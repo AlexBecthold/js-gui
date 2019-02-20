@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Interactive App</title>
+  <title>Sentence Checker</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
   <!-- Bootstrap core CSS -->
@@ -15,47 +15,45 @@
 <body>
   <main class="container-fluid">
 
-    <h1>JavaScript for interactive apps!</h1>
-    <h3>Right-click / Inspect, then select console</h3>
+    <h1>Sentence Checker</h1>
+    <h3>Type a sentence, and your remaining character count (out of 40) will be displayed.</h3>
 
-    <p>Enter your name:
-      <input id="guest" type="text" value="Eden">
+    <p>Type Sentence:
+      <input id="sentence" type="text" maxlength="40">
     </p>
 
-    <p>Enter first number:
-      <input id="firstNumber" type="number" value="7">
-    </p>
+    <!--<button id="clicker" class="btn btn-primary">Click me!</button>-->
 
-    <p>Enter second number:
-      <input id="secondNumber" type="number" value="12">
-    </p>
-
-    <button id="clicker" class="btn btn-primary">Click me!</button>
-
-    <p id="result"></p>
+    <h3>Characters Remaining:</h3>
+    <p id="chars"></p>
 
   </main>
 
   <script>
     console.log('SCRIPT START')
 
+    console.log('Getting access to elements.....................')
+
+    
+    
+
     console.log('Declare testable functions.....................')
 
-    function add(x, y) {
-      return x + y
+    function remaining(str) {
+      let rem = 40 - str.length
+      return rem
     }
-    console.log('Defined add=' + add)
 
     console.log('Declare event listeners .......................')
 
-    document.getElementById('clicker').addEventListener('click', function () {
-      const s = document.getElementById('guest').value
-      const i = parseInt(document.getElementById('firstNumber').value)
-      console.log('i=' + i)
-      const j = parseInt(document.getElementById('secondNumber').value)
-      console.log('j=' + j)
-      const ans = s + ', your sum is ' + add(i, j) + '.'
-      document.getElementById('result').innerHTML = ans
+    document.getElementById('sentence').addEventListener('keyup', function () {
+      console.log('beginning keyup')
+      const sentence = String(document.getElementById('sentence').value)
+      //const chars = parseInt(document.getElementById('chars').value)
+      const intRemaining = remaining(sentence)
+      console.log('keyup event: ' +intRemaining+ ' chars remaining')
+      document.getElementById('chars').innerHTML = intRemaining
+      console.log('ending keyup')
     })
 
     console.log('SCRIPT END')
